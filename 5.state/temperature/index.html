@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const InputNumber = () => {
+            const [number, setNumber] = React.useState(0);
+
+            const handleChange = (event) => {
+                const value = event.target.value;
+                setNumber(value);
+            };
+
+            return (
+                <fieldset>
+                    <legend>섭씨 온도를 입력하세요 : </legend>
+                    <input 
+                        type="text" 
+                        value={number} 
+                        onChange={handleChange} 
+                    />
+                    <p>{number >= 100 ? "끊는 점입니다" : "끊는점이 아직 아닙니다"}</p>
+                </fieldset>
+            );
+        };
+
+        const App = () => {
+            return (
+                <>
+                    <InputNumber />
+                </>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

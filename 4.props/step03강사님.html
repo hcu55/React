@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // 하나의 컴포넌트로 리스트를 한 번에 렌더링, 데이터도 한 번에 사용?
+        const Products = () => {
+            return <div className="text-center">
+                    <h1>상품 목록</h1>
+                    <div className='flex justify-center'>
+                        <Product imgUrl='https://picsum.photos/id/30/200/200' name='컵' price='5,000' />
+                        <Product imgUrl='https://picsum.photos/id/39/200/200' name='LP' price='3,000'/>
+                        <Product imgUrl='https://picsum.photos/id/211/200/200' name='배' price='2,500'/>
+                        <Product imgUrl='https://picsum.photos/id/250/200/200' name='카메라' price='500'/>
+                    </div>
+                </div>
+        }
+
+        // props 적용 후
+        const Product = (props) => {
+            console.log(props);
+
+            return (
+                // props 내 프로퍼티 값 조회하여 바인딩
+                <div className='ml-4'>
+                    <img src={props.imgUrl} alt={`${props.name}입니다.`}/>
+                    <h2>{props.name}</h2>
+                    <p>{props.price}원</p>
+                </div>
+            )
+        };
+
+        // 디스트럭처링으로 분해해서 사용
+        const Product2 = (props) => {
+            const { imgUrl, name, price } = props;
+
+            return (
+                <div className='ml-4'>
+                    <img src={imgUrl} alt={`${name}입니다.`}/>
+                    <h2>{name}</h2>
+                    <p>{price}원</p>
+                </div>
+            )
+        };
+
+        // 파라미터 레벨에서 바로 디스트럭처링 수행
+        const Product3 = ({ imgUrl, name, price }) => {
+            // const { imgUrl, name, price } = props;
+
+            return (
+                <div className='ml-4'>
+                    <img src={imgUrl} alt={`${name}입니다.`}/>
+                    <h2>{name}</h2>
+                    <p>{price}원</p>
+                </div>
+            )
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Products />);
+        
+    </script>
+</body>
+</html>

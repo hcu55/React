@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const questions = [
+                {
+                    id: 1,
+                    title: "Is this a good product?",
+                    info:
+                        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem."
+                },
+                {
+                    id: 2,
+                    title: "How much does it cost?",
+                    info:
+                        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem."
+                },
+                {
+                    id: 3,
+                    title: "When can I get it?",
+                    info:
+                        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem."
+                }
+        ];
+
+        const QuestionsBoard = () => {
+            return (
+                <>
+                    <h1>Project 2: FAQ</h1>
+                    <div>
+                        <h2>Frequently Asked Questions</h2>
+                        <div>
+                            <Question id={questions[0].id - 1 } title={questions[0].title} info={questions[0].info}/>
+                            <Question id={questions[1].id - 1 } title={questions[1].title} info={questions[0].info}/>
+                            <Question id={questions[2].id - 1 } title={questions[2].title} info={questions[0].info}/>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+        
+        const Question = props => {
+
+            const [showInfo, setShowInfo] = React.useState(false);
+
+            return (
+                <div>
+                    <div>
+                        <h2>{ questions[props.id].title }</h2>
+                        <input 
+                        type="button" 
+                        value={showInfo ? "-" : "+"}
+                        onClick={() => setShowInfo(!showInfo)}
+                        />
+                    </div>
+                    <p>{ questions[props.id].info }</p>
+                </div>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<QuestionsBoard />);
+    </script>
+</body>
+</html>
