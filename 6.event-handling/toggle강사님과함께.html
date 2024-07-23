@@ -20,10 +20,13 @@
         // 함수형 컴포넌트 Toggle
         const Toggle = () => {
             const [isToggleOn, toggle] = useState(false)
+            const imgSrc = {
+
+            }
 
             return (
                 <>
-                    <img src="" alt="" srcset="" />
+                    <img src={ isToggleOn ? './pic_bulboff.gif' : './pic_bulbon.gif'} alt=""/>
                     <button onClick={() => toggle(!isToggleOn)}>
                         { isToggleOn ? 'ON' : 'OFF' }
                     </button>
@@ -32,7 +35,7 @@
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<SwitchButton />);
+        root.render(<Toggle />);
     </script>
 </body>
 </html>
